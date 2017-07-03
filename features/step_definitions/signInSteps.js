@@ -1,9 +1,10 @@
 // Step definitions
 
-var signin = require('../pages/signInPage');
-var landingPage = require('../pages/landingPage');
-var signinfailure = require('../pages/signInFailure');
+var signin = require('../page_objects/signInPage');
+var landingPage = require('../page_objects/landingPage');
+var signinfailure = require('../page_objects/signInFailure');
 var {defineSupportCode} = require('cucumber');
+var Mongo = require('../page_objects/mongoDbHelper');
 
 defineSupportCode(function ({Given, When, Then}) {
 
@@ -25,7 +26,7 @@ defineSupportCode(function ({Given, When, Then}) {
 
     Given(/^I have entered valid credentials$/, function (callback) {
         browser.get(config.appUrl);
-        signin.Login('teacher1', 'password')
+        signin.login('teacher1', 'password')
         callback();
     });
 
@@ -41,7 +42,7 @@ defineSupportCode(function ({Given, When, Then}) {
 
     Given(/^I have entered invalid credentials$/, function (callback) {
         browser.get(config.appUrl);
-        signin.Login('teacher1', 'wrong')
+        signin.login('teacher1', 'wrong')
         callback();
     });
 
